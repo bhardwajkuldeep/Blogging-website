@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% load crispy_forms_tags %}
+
+<div class="row">
+    <div class="col-md-12 offset-md-0">
+        <h2><span class="badge badge-secondary w-100 p-2">Update Article</span></h2>
+        
+        <hr>
+        <form method = "post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form|crispy}}
+            <br>
+            <button type = "submit" class = "btn btn-success">Update Article</button>
+        </form>
+    </div>
+  </div>
+
+
+{% endblock body %}

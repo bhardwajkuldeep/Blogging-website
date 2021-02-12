@@ -1,0 +1,77 @@
+<style>
+uscolor{
+  color:yellow;
+  font-size: 15px;
+}
+.btnmarg{
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.logoimg{
+  border-radius: 15%;
+  height: 42px;
+  width: 50px;
+}
+.anav{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 6px;
+  border-radius: 12px;
+}
+.anav:hover {
+  background-color:rgb(219, 77, 77);
+}
+</style>
+
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+          <img src="/media\3logo.png/" class="mr-4 logoimg" alt="Logo">
+     
+        <!--<a class="navbar-brand" href="{% url 'index'  %}">The Blue Horizon</a>-->
+        
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            <a class="nav-link anav" href="{% url 'index'  %}">Home</a>
+          </li>
+            <li class="nav-item active">
+                <a class="nav-link anav" href="{% url 'article:articles'  %}">Articles</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link anav" href="{% url 'about'  %}">About Us</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link anav" href="{% url 'user:contact'  %}">Contact Us</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ml-auto">
+
+          {% if request.user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link btn btn-danger btnmarg" href="{% url 'article:dashboard'  %}">Control Panel</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link btn btn-danger btnmarg" href="{% url 'user:logout'  %}">Logout</a>
+          </li>
+          <li class="nav-item active nav-link">
+            <uscolor>Welcome, <uscolor>{{request.user.username}}</uscolor>
+          </li>
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link btn btn-danger btnmarg" href="{% url 'user:register'  %}">Register</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link btn btn-danger btnmarg" href="{% url 'user:login'  %}">Login</a>
+          </li>
+          {% endif %} 
+          </ul>
+        </div> 
+</nav>
